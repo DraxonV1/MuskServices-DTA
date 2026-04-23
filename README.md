@@ -1,10 +1,10 @@
 # MuskServices DTA
 
-A Discord Token Automation platform built for both workers and private users. Generate at scale and monetize efficiently.
+A Discord Token Automation platform for worker, private, and AFK users. Generate at scale and monetize efficiently.
 
 ---
 
-## Worker System - $0.02 per EV
+## Worker System - $0.015 per EV
 
 Start as a worker and generate immediately. No upfront cost, just your key and a stable setup.
 
@@ -19,7 +19,7 @@ Start as a worker and generate immediately. No upfront cost, just your key and a
 
 ---
 
-## Private System - Credits from $0.02
+## Private System - Credits from $0.006
 
 Full private generation access with your own credit balance.
 
@@ -31,9 +31,9 @@ Full private generation access with your own credit balance.
 
 | Volume | Price per credit |
 |--------|-----------------|
-| Any amount | $0.02 |
-| 2,000+ | $0.018 |
-| 5,000+ | $0.015 |
+| Any amount | $0.01 |
+| 2,000+ | $0.008 |
+| 5,000+ | $0.006 |
 
 ---
 
@@ -53,6 +53,7 @@ Invite sub-workers and earn a cut of everything they generate.
 |--------|--------|
 | `OPT-USER-XXXXX` | Worker mode |
 | `PRV-USER-XXXXX` | Private mode (up to 10 HWIDs) |
+| `AFK-USER-XXXXX` | AFK mode |
 
 ---
 
@@ -82,6 +83,11 @@ muskdta                    launch (update check + config check + start)
 muskdta update             force re-download latest binary for your OS
 muskdta config             re-run config setup in terminal
 muskdta config manual      open config.json in your system editor
+muskdta config validate    strict config validation
+muskdta mode set afk       quick mode switch (worker/private/afk)
+muskdta extensions sync    sync extension folders into config
+muskdta doctor             run diagnostics for environment/config
+muskdta logs --lines 80    show recent launcher logs
 muskdta auto-update on     enable automatic update checks on launch
 muskdta auto-update off    disable automatic update checks
 muskdta discord            open the Discord server
@@ -95,10 +101,11 @@ muskdta status             show binary, version, config state, data path
 ```json
 {
   "browser": "edge", 
-  "mode": "private", 
+  "mode": "afk", 
   "proxy_mode": "http",
-  "http_lib": "curl",
   "ip_rotation": "none",
+  "nopecha_extension_dir": "C:/Users/<you>/.muskdta/extensions/nopecha_ext",
+  "proxy_extension_dir": "C:/Users/<you>/.muskdta/extensions/proxy_extension",
   "delay_between_accs": 0,
   "adb_rotate_every": 2,
   "after_create_timer": 0,
@@ -111,8 +118,10 @@ muskdta status             show binary, version, config state, data path
 | Key | Values | Description |
 |-----|--------|-------------|
 | `browser` | `edge` / `brave` | Browser to use |
-| `mode` | `worker` / `private` | Account generation mode |
+| `mode` | `worker` / `private` / `afk` | Account generation mode |
 | `ip_rotation` | `none` / `adb` / `vpn` / `proxy` | IP rotation method |
+| `nopecha_extension_dir` | path | NopeCHA extension folder (managed by CLI) |
+| `proxy_extension_dir` | path | Proxy extension folder (managed by CLI) |
 | `adb_rotate_every` | number | Rotate ADB every N accounts |
 | `delay_between_accs` | seconds | Delay between each account |
 | `after_create_timer` | seconds | Wait after account created |
@@ -131,6 +140,6 @@ muskdta status             show binary, version, config state, data path
 
 Keys are issued via direct contact on Discord.
 
-Message **@draxon.v15** and send `work` or `private` to get started.
+Create Ticket in our discord and send `work` or `private` to get started.
 
 **Discord:** [MuskServices](https://discord.gg/dpk45Be2e3)
